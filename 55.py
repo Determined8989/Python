@@ -1,5 +1,6 @@
-import os 
+import os
 import datetime
+import shutil
 def SaveLog(s):
 	p = datetime.datetime.now()
 	f = open('LOG/log_' + p.strftime("%Y%m%d%H%M") + '.txt', 'a') 	
@@ -13,6 +14,9 @@ def printInfo():
 	for subname in subnames:
 		sub_size += os.path.getsize('LOG/'+ subname)		    
 	print (sub_size)
+def delete():
+    shutil.rmtree('LOG')
+    os.mkdir("LOG")
 def cls():
 	os.system('cls||clear')
 def main():
@@ -26,6 +30,9 @@ def main():
 		elif a.lower() == "clear":
 			cls()
 			SaveLog ('Пользователь очистил экран')
+		elif a == "delete":
+			delete()
+			SaveLog('Пользователь очистил историю')
 		else:
 			SaveLog ('Пользователь ввел неизвестную команду: ' + a)
-main()
+main() 
